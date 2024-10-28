@@ -8,6 +8,7 @@ use admin\widgets\apexCharts\Line;
 use admin\widgets\tooltip\TooltipWidget;
 use common\components\helpers\ChartHelper;
 use common\enums\Boolean;
+use common\models\Code;
 use common\modules\backup\models\DbWrap;
 use common\modules\mail\{enums\LogStatus, models\MailingLog};
 use common\modules\user\models\{Email, User};
@@ -81,6 +82,14 @@ final class StatisticController extends AdminController
         $data[] = [
             'name' => 'Кол-во активных администраторов',
             'value' => UserAdmin::find()->where(['status' => AdminStatus::Active->value])->count()
+        ];
+        $data[] = [
+            'name' => 'Всего кодов',
+            'value' => Code::find()->count()
+        ];
+        $data[] = [
+            'name' => 'Кодов роздано',
+            'value' => Code::find()->where(['public_status' => 1])->count()
         ];
 
         return $this->render('index', ['data' => $data]);

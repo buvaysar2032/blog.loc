@@ -2,6 +2,7 @@
 
 namespace admin\controllers;
 
+use admin\components\uploadForm\actions\UploadAction;
 use admin\controllers\AdminController;
 use admin\modules\rbac\components\RbacHtml;
 use common\components\helpers\UserUrl;
@@ -154,7 +155,11 @@ final class CodeController extends AdminController
         return [
             'change' => [
                 'class' => EditableColumnAction::class,
-                'modelClass' => Code::class
+                'modelClass' => Code::class,
+            ],
+            'upload' => [
+                'class' => UploadAction::class,
+                'modelClass' => Code::class,
             ]
         ];
     }

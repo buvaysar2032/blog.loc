@@ -12,6 +12,7 @@ use kartik\icons\Icon;
 /**
  * @var $this         yii\web\View
  * @var $searchModel  common\modules\user\models\UserSearch
+ * @var $model        common\modules\user\models\User
  * @var $dataProvider yii\data\ActiveDataProvider
  */
 
@@ -87,6 +88,11 @@ $this->params['layout_class'] = 'container-fluid';
                 'hideSearch' => true,
                 'width' => 120,
             ]),
+
+            [
+                'attribute' => 'codesCount',
+                'label' => Yii::t('app', 'Codes'),
+            ],
 
             [
                 'class' => GroupedActionColumn::class,

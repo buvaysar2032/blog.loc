@@ -4,6 +4,7 @@ namespace common\modules\user\models;
 
 use common\components\export\ExportConfig;
 use common\models\AppActiveRecord;
+use common\models\Code;
 use common\modules\user\{enums\Status, Module};
 use OpenApi\Attributes\{Property, Schema};
 use Yii;
@@ -201,5 +202,15 @@ class User extends AppActiveRecord implements IdentityInterface, ExportConfig
             'last_login_at:datetime',
             'created_at:datetime'
         ];
+    }
+
+    public function getCodesCount()
+    {
+        return Code::find()->where(['user_id' => $this->id])->count();
+    }
+
+    public function getCodes()
+    {
+        return $this->hasMany(Code::class, ['user_id' => 'id']);
     }
 }

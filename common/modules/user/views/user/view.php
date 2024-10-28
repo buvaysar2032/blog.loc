@@ -49,6 +49,19 @@ $this->params['breadcrumbs'][] = $this->title;
             Column::widget(['attr' => 'username']),
             Column::widget(['attr' => 'auth_source']),
             Column::widget(['attr' => 'status', 'items' => Status::class]),
+            [
+                'label' => Yii::t('app', 'Codes'),
+                'value' => static function (User $model) {
+                    /** @var common\models\Code[] $codes */
+                    $codes = $model->getCodes()->all();
+                    $output = '';
+                    foreach ($codes as $code) {
+                        $output .= $code->code . '<br>';
+                    }
+                    return $output;
+                },
+                'format' => 'raw'
+            ],
             Column::widget(['attr' => 'userExt.first_name']),
             Column::widget(['attr' => 'userExt.middle_name']),
             Column::widget(['attr' => 'userExt.last_name']),

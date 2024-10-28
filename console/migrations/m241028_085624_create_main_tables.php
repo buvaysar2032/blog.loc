@@ -3,9 +3,9 @@
 use yii\db\Migration;
 
 /**
- * Class m241025_151316_create_main_tables
+ * Class m241028_085624_create_main_tables
  */
-class m241025_151316_create_main_tables extends Migration
+class m241028_085624_create_main_tables extends Migration
 {
     /**
      * {@inheritdoc}
@@ -21,8 +21,8 @@ class m241025_151316_create_main_tables extends Migration
             'id' => $this->primaryKey(),
             'code' => $this->string(6)->notNull(),
             'promocode' => $this->string()->notNull(),
-            'code_category_id' => $this->integer()->notNull(),
-            'user_id' => $this->integer()->notNull(),
+            'code_category_id' => $this->integer(),
+            'user_id' => $this->integer(),
             'taken_at' => $this->integer(),
             'user_ip' => $this->integer(),
             'public_status' => $this->boolean()->defaultValue(0),

@@ -54,11 +54,11 @@ if (!Yii::$app->user->isGuest) {
                     'url' => UserUrl::setFilters(TextSearch::class, ['/text/index'])
                 ],
                 [
-                    'label' => Yii::t('app', 'Code Category'),
+                    'label' => Yii::t('app', 'Code Categories'),
                     'url' => UserUrl::setFilters(CodeSearch::class, ['/code-category/index'])
                 ],
                 [
-                    'label' => Yii::t('app', 'Code'),
+                    'label' => Yii::t('app', 'Codes'),
                     'url' => UserUrl::setFilters(CodeSearch::class, ['/code/index'])
                 ],
             ]

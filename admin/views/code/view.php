@@ -1,9 +1,14 @@
 <?php
 
 use admin\components\widgets\detailView\Column;
+use admin\components\widgets\gridView\ColumnDate;
+use admin\components\widgets\gridView\ColumnSelect2;
 use admin\modules\rbac\components\RbacHtml;
 use common\components\helpers\UserUrl;
+use common\enums\CodeStatus;
+use common\models\CodeCategory;
 use common\models\CodeSearch;
+use yii\helpers\Url;
 use yii\widgets\DetailView;
 
 /**
@@ -43,11 +48,17 @@ $this->params['breadcrumbs'][] = $this->title;
             Column::widget(),
             Column::widget(['attr' => 'code']),
             Column::widget(['attr' => 'promocode']),
-            Column::widget(['attr' => 'code_category_id']),
-            Column::widget(['attr' => 'user_id']),
-            Column::widget(['attr' => 'taken_at']),
-            Column::widget(['attr' => 'user_ip']),
-            Column::widget(['attr' => 'public_status']),
+            ColumnSelect2::widget(['attr' => 'code_category_id', 'items' => CodeCategory::findList(), 'hideSearch' => true]),
+            ColumnSelect2::widget([
+                'attr' => 'user_id',
+                'viewAttr' => 'user.username',
+                'pathLink' => 'user/user',
+                'editable' => false,
+                'placeholder' => Yii::t('app', 'Search...'),
+            ]),
+            ColumnDate::widget(['attr' => 'taken_at', 'searchModel' => $model]),
+            Column::widget(['attr' => 'user_ip', 'format' => 'ip']),
+            ColumnSelect2::widget(['attr' => 'public_status', 'items' => CodeStatus::indexedDescriptions()]),
         ]
     ]) ?>
 

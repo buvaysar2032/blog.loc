@@ -2,6 +2,8 @@
 
 use admin\components\uploadForm\models\UploadForm;
 use yii\bootstrap5\{ActiveForm, Html, Modal};
+use admin\widgets\input\Select2;
+use common\models\CodeCategory;
 
 /**
  * Представление модальной формы для загрузки файлов-таблиц
@@ -53,6 +55,8 @@ Modal::begin([
             <?php $form = ActiveForm::begin(['action' => $action, 'options' => ['enctype' => 'multipart/form-data']]) ?>
 
             <?= $form->field($model, 'file')->label(false)->fileInput() ?>
+
+            <?= $form->field($model, 'code_category_id')->widget(Select2::class, ['data' => CodeCategory::findList()]) ?>
 
             <div class='form-group'>
                 <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>

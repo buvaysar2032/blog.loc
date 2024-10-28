@@ -1,6 +1,11 @@
 <?php
 
 return [
+    'maxAttempts' => 3,
+    'blockTimeFirst' => 300, // 300(секунд) 5 минут
+    'blockTimeSecond' => 1800, // 1800(секунд) 30 минут
+    'blockTimeThird' => null, // бесконечная блокировка
+
     'adminEmail' => 'admin@example.com',
 
     // >>> ADMIN/INFO >>>
